@@ -1,0 +1,29 @@
+package Exercicios_fixação;
+
+import java.util.Scanner;
+
+public class Exercício05 {
+
+	public static void main(String[] args) {
+		
+		Scanner sc = new Scanner (System.in);
+		/*
+		 * Fazer um programa para ler o código de uma peça 1,
+		 *  o número de peças 1, o valor unitário de cada peça 1,
+		 *   o código de uma peça 2, 
+		 *   o número de peças 2 e o valor unitário de cada peça 2.
+		 *    Calcule e mostre o valor a ser pago. 
+		 */
+		int codP1, numP1 = sc.nextInt();
+		double valorUniP1 = sc.nextDouble();
+		int codP2, numP2 = sc.nextInt();
+		double valorUniP2 = sc.nextDouble();
+		
+		double valor = valorUniP1 * numP1 + valorUniP2 * numP2;
+		
+		System.out.printf("VALOR A PAGAR: %.2f%n", valor);
+		
+		sc.close();
+	}
+
+}
