@@ -51,8 +51,9 @@ public class Problema_alturas {
 			menorDeIdade++;
 			}
 		}
+		// usado %% para aparecer o simbolo de porcentagem quanto imprimir o resultado.
 		menorDeIdade = (menorDeIdade * 100.0) / n;
-		System.out.printf("Pessoas com menos de 16 anos: %.2f%n", menorDeIdade);
+		System.out.printf("Pessoas com menos de 16 anos: %.2f%%%n", menorDeIdade);
 		
 		// percorrer o vetor e imprimir nomes das pessoa menos de 16 anos
 		for (int j = 0; j < vect.length; j++) {
