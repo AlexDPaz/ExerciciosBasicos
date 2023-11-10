@@ -8,14 +8,13 @@ import java.util.List;
 import entities.enun.OrderStatus;
 
 public class Order {
+	private static final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 
 	private Date moment;
 	private OrderStatus status;
 
 	private Client client;
-	private List<OrderIntem> orderIntem = new ArrayList<>();
-	
-	private static final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+	private List<OrderItem> items = new ArrayList<>();
 
 	public Order() {
 	}
@@ -50,22 +49,22 @@ public class Order {
 		this.client = client;
 	}
 
-	public List<OrderIntem> getOrderIntem() {
-		return orderIntem;
+	public List<OrderItem> getOrderIntem() {
+		return items;
 	}
 	
-	public void addOrderIntem (OrderIntem orderItem) {
-		orderIntem.add(orderItem);
+	public void addOrderIntem (OrderItem item) {
+		items.add(item);
 	}
 	
-	public void removeOrderIntem (OrderIntem orderItem) {
-		orderIntem.remove(orderItem);
+	public void removeOrderIntem (OrderItem item) {
+		items.remove(item);
 	}
 	
 	public Double total() {
 		double sum = 0.0;
-		for (OrderIntem orderIntem :orderIntem ) {
-			sum += orderIntem.subTotal();
+		for (OrderItem orderItem :items ) {
+			sum += orderItem.subTotal();
 		}
 		return sum;
 	}
@@ -80,8 +79,8 @@ public class Order {
 		sb.append("Client: ");
 		sb.append(client + "\n");
 		sb.append("Order items: ");
-		for (OrderIntem orderIntem :orderIntem ) {
-			sb.append(orderIntem + "\n");
+		for (OrderItem orderItem : items ) {
+			sb.append(orderItem + "\n");
 		}
 		sb.append("Total price: ");
 		sb.append(String.format("%.2f", total()));
