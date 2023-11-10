@@ -7,6 +7,7 @@ import java.util.Locale;
 import java.util.Scanner;
 
 import entities.Client;
+import entities.Order;
 import entities.OrderItem;
 import entities.Product;
 import entities.enun.OrderStatus;
@@ -26,19 +27,23 @@ public class Program {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
 		System.out.println("Enter cliente data: ");
-		System.out.print("Name:");
+		System.out.print("Name: ");
 		String name = sc.nextLine();
 		System.out.print("Email: ");
 		String email = sc.nextLine();
-		System.out.print("Birth date (DD/MM/YYYY):");
+		System.out.print("Birth date (DD/MM/YYYY): ");
 		Date birthdate = sdf.parse(sc.next());
 		Client client = new entities.Client(name, email, birthdate);
 
-		System.out.print("Enter order data: ");
-		System.out.print("Status:");
+		System.out.println("Enter order data: ");
+		System.out.print("Status: ");
 		OrderStatus status = OrderStatus.valueOf(sc.next());
+		
+		// instanciando o pedido antes do laço de repetição;
+		Order order = new Order(new Date(), status, client);
+		//Usado o new Date() para pegar o hoario do sistema(maquina)
 
-		System.out.print("How many items to this order?");
+		System.out.print("How many items to this order? ");
 		int numberOrder = sc.nextInt();
 
 		for (int i = 0; i < numberOrder; i++) {
@@ -46,7 +51,7 @@ public class Program {
 			System.out.print("Product name: ");
 			sc.nextLine();
 			String productName = sc.nextLine();
-			System.out.println("Product price: ");
+			System.out.print("Product price: ");
 			double productPrice = sc.nextDouble();
 			/*
 			 * primeiro instaciar o produto e o preço obs : não usar o mesmo nome da que
@@ -54,13 +59,19 @@ public class Program {
 			 */
 			Product product = new Product(productName, productPrice);
 
-			System.out.println("Quantity: ");
+			System.out.print("Quantity: ");
 			int quantity = sc.nextInt();
 
 			/* Segundo instaciar o item de pedido associado a este produto */
-			OrderItem it = new OrderItem(quantity, productPrice );
-
+			OrderItem it = new OrderItem(quantity, productPrice, product);
+			
+			// para adicionar um item no meu pedido que instaciei;
+			order.addOrderIntem(it);
 		}
+		
+		System.out.println();
+		System.out.println(order);
+		
 		sc.close();
 	}
 
